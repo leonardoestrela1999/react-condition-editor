@@ -1,4 +1,4 @@
-window.datastore = {
+export const datastore = {
   getProducts: function () {
     return this.products;
   },

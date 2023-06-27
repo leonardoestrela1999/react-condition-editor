@@ -1,12 +1,12 @@
 import SimpleProperty from "./SimpleProperty";
 
 class Product {
-    public id: string;
-    public properties: SimpleProperty[];
+    public id: number;
+    public property_values: SimpleProperty[];
     
-    public constructor(id: string, properties: SimpleProperty[]){
+    public constructor(id: number, property_values: SimpleProperty[]){
         this.id = id;
-        this.properties = properties;
+        this.property_values = property_values;
     }
 }
 

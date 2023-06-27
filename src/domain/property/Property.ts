@@ -1,16 +1,26 @@
-import { PropertyType } from "./PropertyType";
+import { POSSIBLE_TYPE_VALUES } from "../../constants";
 
 class Property {
-    public id: string;
+    public id: number;
     public name: string;
-    public type: PropertyType;
+    public type: string;
     public values?: string[]
 
-    public constructor(property_id: string, name: string, type: string, values?: string[]) {
-        this.id = property_id;
+    public constructor(id: number, name: string, type: string, values?: string[]) {
+        this.id = id;
         this.name = name;
-        this.type = PropertyType[type as keyof typeof PropertyType];
+        this.type = validateType(type);
         this.values = values;
+    }
+
+
+}
+
+function validateType(type: string){
+    if(POSSIBLE_TYPE_VALUES.includes(type)){
+        return type;
+    }else {
+        throw new Error("Invalid type");
     }
 }
 
