@@ -12,8 +12,6 @@ class Property {
         this.type = validateType(type);
         this.values = values;
     }
-
-
 }
 
 function validateType(type: string){

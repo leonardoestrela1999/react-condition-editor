@@ -10,10 +10,15 @@ import {
     TableContainer,
   } from '@chakra-ui/react'
 import useStore from '../hooks/useStore';
+import Product from '../domain/product/Product';
+import Property from '../domain/property/Property';
 
-function StoreTable() {
-    const {products, properties} = useStore();
+interface StoreTableProps {
+    products: Product[];
+    properties: Property[];
+}
 
+function StoreTable({products, properties}: StoreTableProps) {
     return(
         <TableContainer>
             <Table variant='simple'>
