@@ -1,3 +1,5 @@
+export type PropertyType = string | number | (string|number)[];
+
 export const POSSIBLE_TYPE_VALUES = ['number', 'string', 'enumerated'];
 
 export const OPERATORS_WITH_VALUE = ["equals", "greater_than", "less_than", "in", "contains"];

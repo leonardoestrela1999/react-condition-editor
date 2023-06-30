@@ -9,7 +9,6 @@ import {
     TableCaption,
     TableContainer,
   } from '@chakra-ui/react'
-import useStore from '../hooks/useStore';
 import Product from '../domain/product/Product';
 import Property from '../domain/property/Property';
 

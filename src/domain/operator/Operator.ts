@@ -8,12 +8,12 @@ class Operator {
     public constructor(id: string, text: string){
         this.id = id;
         this.text = text;
-        this.hasValue = needsValue(id);
+        this.hasValue = needsValue(this.id);
     }
     
 }
 
-function needsValue(id: string): boolean{
+export function needsValue(id: string){
     return OPERATORS_WITH_VALUE.includes(id);
 }
 

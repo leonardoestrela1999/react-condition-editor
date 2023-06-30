@@ -1,34 +1,38 @@
-import { Select } from '@chakra-ui/react'
-import useStore from '../hooks/useStore';
+import { Input, Select } from '@chakra-ui/react'
 import Property from '../domain/property/Property';
-import Operator from '../domain/operator/Operator';
+import Operator, { needsValue } from '../domain/operator/Operator';
 import { useState } from 'react';
-import { getListOfOperatorsByType, OPERATORS_WITH_VALUE } from '../constants';
+import { getListOfOperatorsByType, OPERATORS_WITH_VALUE, PropertyType } from '../constants';
+import { filter } from '../services/FilteringService';
+import Product from '../domain/product/Product';
+import { MultiSelect } from 'chakra-multiselect';
+import { datastore } from '../mocks/data';
 
 interface StoreFiltersProps {
+    properties: Property[],
+    operators: Operator[],
+    setProducts: (products: Product[]) => void,
     setCurrentProperty: (property: Property) => void,
     setCurrentOperator: (operator: Operator) => void,
-    setCurrentValue: (value: string[]) => void,
+    setCurrentValue: (value: PropertyType) => void,
     currentProperty?: Property,
     currentOperator?: Operator,
-    currentValue?: string | string[]
+    currentValue?: PropertyType
 }
 
 function StoreFilters({
+    properties,
+    operators,
+    setProducts,
     setCurrentProperty,
     setCurrentOperator,
     setCurrentValue,
     currentProperty,
-    currentOperator,
-    currentValue
+    currentOperator
 }: StoreFiltersProps) {
     
-    const {
-        properties,
-        operators,
-    } = useStore();
-
     const [operatorsByProperty, setOperatorsByProperty] = useState<Operator[]>([]);
+    const [unfilteredProducts] = useState<Product[]>(datastore.getProducts());
 
     const handleSetProperty = (property: Property) => {
         const auxOperators = getListOfOperatorsByType(property.type);
@@ -39,21 +43,32 @@ function StoreFilters({
 
     const handleSetOperator = (operator: Operator) => {
         setCurrentOperator(operator)
+        if(!operator.hasValue){
+            const filteredProducts = filter(unfilteredProducts, currentProperty!, operator);
+            setProducts(filteredProducts);
+        }
     }
 
-    const handleSetValue = (value: string[]) => {
+    const handleSetValue = (value: PropertyType) => {
         setCurrentValue(value);
+        const filteredProducts = filter(unfilteredProducts, currentProperty!, currentOperator!, value);
+        setProducts(filteredProducts);
     }
 
     const getValueComponent = () => {
-        if(currentOperator?.hasValue){
-            return(
-                <Select placeholder='Select a Value'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                </Select>
-            );
+        if(currentOperator && needsValue(currentOperator?.id)){
+            if(currentProperty?.type === 'enumerated'){
+                const options = currentProperty.values!.map((label) => ({ label, value: label.toLowerCase() }))
+                return(
+                    <MultiSelect
+                        options={options}
+                        label='Choose an item'
+                        onChange={(aux) => handleSetValue(aux)}
+                    />
+                );
+            }else {
+                return( <Input placeholder='Insert a value...' onChange={(e) => handleSetValue(e.target.value)}/> );
+            }
         }else {
             return null;
         }
@@ -68,7 +83,7 @@ function StoreFilters({
             </Select>
             {currentProperty && <Select placeholder='Select an Operator'>
                 {operatorsByProperty.map(operator =>
-                    <option>{operator.text}</option>
+                    <option onClick={() => handleSetOperator(operator)}>{operator.text}</option>
                 )}
             </Select>}
             {getValueComponent()}
