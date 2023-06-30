@@ -17,20 +17,20 @@ interface StoreTableProps {
     properties: Property[];
 }
 
-function StoreTable({products, properties}: StoreTableProps) {
+function ProductTable({products, properties}: StoreTableProps) {
     return(
-        <TableContainer>
+        <TableContainer data-testid="product-table" >
             <Table variant='simple'>
                 <Thead>
                 <Tr>
                     {properties.map(property => 
-                        <Th>{property.name}</Th>
+                        <Th data-testid="product-table-header">{property.name}</Th>
                     )}
                 </Tr>
                 </Thead>
                 <Tbody>
                 {products.map(product =>
-                    <Tr>
+                    <Tr data-testid="product-table-row">
                         {product.property_values.map(propertyValue => 
                             <Td>{propertyValue.value}</Td>
                         )}
@@ -42,4 +42,4 @@ function StoreTable({products, properties}: StoreTableProps) {
     );
 }
 
-export default StoreTable;
+export default ProductTable;

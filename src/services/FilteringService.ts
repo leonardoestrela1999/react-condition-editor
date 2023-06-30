@@ -7,7 +7,8 @@ export const filter = (list: Product[], property: Property, operator: Operator, 
     switch(operator.id) { 
         case "equals": {
            if(value){
-                const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && prop.value === value));
+            debugger;
+                const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && prop.value == value));
                 return resultList;
            }
            return list;

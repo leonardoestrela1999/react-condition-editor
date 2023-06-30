@@ -8,6 +8,7 @@ class Operator {
     public constructor(id: string, text: string){
         this.id = id;
         this.text = text;
+        //TODO: does this do anything???
         this.hasValue = needsValue(this.id);
     }
     
