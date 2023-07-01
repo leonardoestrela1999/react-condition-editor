@@ -1,21 +1,19 @@
 import { OPERATORS_WITH_VALUE } from "../../constants";
 
 class Operator {
-    public id: string;
-    public text: string;
-    public hasValue?: boolean;
+  public id: string;
+  public text: string;
+  public hasValue?: boolean;
 
-    public constructor(id: string, text: string){
-        this.id = id;
-        this.text = text;
-        //TODO: does this do anything???
-        this.hasValue = needsValue(this.id);
-    }
-    
+  public constructor(id: string, text: string) {
+    this.id = id;
+    this.text = text;
+    this.hasValue = needsValue(this.id);
+  }
 }
 
-export function needsValue(id: string){
-    return OPERATORS_WITH_VALUE.includes(id);
+export function needsValue(id: string) {
+  return OPERATORS_WITH_VALUE.includes(id);
 }
 
-export default Operator
+export default Operator;

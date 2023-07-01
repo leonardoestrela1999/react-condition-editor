@@ -1,0 +1,24 @@
+@startuml
+class Property {
+id: number
+name: string
+type: string
+values?: string[]
+}
+class Operator{
+id: number
+text: string
+}
+class Product{
+id: number
+property_values: SimpleProperty[]
+}
+class SimpleProperty{
+property_id: number
+values: PropertyType
+}
+
+
+Property <-- SimpleProperty
+Product --|> SimpleProperty
+@enduml

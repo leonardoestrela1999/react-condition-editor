@@ -7,7 +7,6 @@ export const filter = (list: Product[], property: Property, operator: Operator, 
     switch(operator.id) { 
         case "equals": {
            if(value){
-            debugger;
                 const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && prop.value == value));
                 return resultList;
            }
@@ -18,8 +17,7 @@ export const filter = (list: Product[], property: Property, operator: Operator, 
             return resultList;
         }
         case "none": {
-            //TODO: this filter isn't working yet
-            const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && prop.value.toString() === ''));
+            const resultList = list.filter(product => !product.property_values.find(prop => prop.property_id === property.id));
             return resultList;
         }
         case "greater_than": {
@@ -46,7 +44,7 @@ export const filter = (list: Product[], property: Property, operator: Operator, 
         }
         case "contains": {
             if(value){
-                 const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && (prop.value as (string|number)[]).includes(value as string|number)));
+                 const resultList = list.filter(product => product.property_values.find(prop => prop.property_id === property.id && (prop.value as string).includes(value as string)));
                  return resultList;
             }
             return list;
