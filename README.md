@@ -55,6 +55,13 @@ Overall, I believe the solution completely fulfills the requirements proposed, w
 
 # How to use this application
 
+
+## Install
+
+Id this is your first time running this app, you need to first install all the dependencies necessary for running the project. You will also need to have Node >= 14 on your local development machine.
+
+In order to install the dependencies, run `npm i`. This will create the folder "node_modules", which contains said dependencies.
+
 ## Start
 
 In order to start this app, run `npm start`. This runs the app in development mode.\
