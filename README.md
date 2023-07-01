@@ -1,5 +1,5 @@
 # How I developed this application
-
+This project was done in the context of [this exercise](https://github.com/salsify/condition-editor-coding-exercise).\
 I chose React simply because it is the web framework I am most familiar with, and because Salsify also uses a JavaScript web framework (Ember.js).
 
 ## Assumptions
@@ -28,6 +28,8 @@ The project's folder structure is as follows:
 
 ### Components
 The UI library used was [Chakra UI](https://chakra-ui.com/), a lightweight React component library. It was my first time using it on an application, but I still decided to use it as I was looking to try it for a while. 
+
+The Multiselect component does not belong to Chakra UI, but to this [open-source library](https://github.com/bmartel/chakra-multiselect). 
 
 - ProductTable.tsx: this component consists of a simple Table, responsible for displaying all the products fetched from the datasource.
 
