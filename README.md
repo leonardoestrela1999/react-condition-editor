@@ -1,18 +1,3 @@
-# How I developed this application
-This project was done in the context of [this exercise](https://github.com/salsify/condition-editor-coding-exercise).\
-I chose React simply because it is the web framework I am most familiar with, and because Salsify also uses a JavaScript web framework (Ember.js).
-
-## Assumptions
-Following the recommendations on the exercise's Github page:
-- No other Operators or data types will be introduced; they are considered static
-- Properties and Products can change, and the solution does not assume otherwise
-
-The datasource file given suffered a small change just to allow for a cleaner and more correct integration in a React project:
-
-                export const datastore = {
-                    ...
-                }
-
 ## Structure
 The project's folder structure is as follows:
 - components: Components such as Table and Filters - functions that return "building blocks" necessary to build a page, and that can be reusable if necessary.
@@ -34,24 +19,6 @@ The Multiselect component does not belong to Chakra UI, but to this [open-source
 - ProductTable.tsx: this component consists of a simple Table, responsible for displaying all the products fetched from the datasource.
 
 - Filters.tsx: this component consists of the three Filters (Property, Operator and Value), as well as a button to Clear all the Filters.
-
-## Testing
-
-In order to test the application, I used [Jest](https://jestjs.io/), a popular JavaScript testing framework.
-Due to time constraints and for practicality's sake, I decided to unit test FilteringService.tsx and develop some integration tests for App.tsx.
-
-## Time spent & Final Considerations
-
-I took my time with this project, not just because there was no hard deadline but also because the week during which it was developed was a particularly chaotic one, from a professional and academic standpoint. \
-I probably took between 8 and 10 hours, with at least 2 of those hours being dedicated to thinking about the best solution and design for the project, and 2 others being dedicated to the testing and writing documentation/code cleanup. This time was spread throughout the whole week (from Saturday through Friday).
-
-The user interface was intentionally left relatively bare-bones, in order to fully focus on the software solution itself.
-
-Overall, I believe the solution completely fulfills the requirements proposed, while also being technically sound and readable. If I had more time, I would:
-
-- Do _a lot_ more tests
-- Implement error handling and input validation
-- Create a more appealing and user friendly interface
 
 # How to use this application
 
